@@ -1,0 +1,284 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0e1018;
+  --color-night: #141826;
+  --color-navy: #1b2235;
+  --color-navy-2: #232c44;
+  --color-charcoal: #24252b;
+  --color-burgundy: #6b2430;
+  --color-burgundy-2: #8e2f3f;
+  --color-cream: #efe4cc;
+  --color-paper: #e8dcc0;
+  --color-paper-dark: #cdbb94;
+  --color-brass: #c9a25a;
+  --color-brass-2: #e0c27a;
+  --color-muted: #a59c8c;
+  --color-sage: #7fa38a;
+  --color-danger: #d0645a;
+
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, "Times New Roman", serif;
+  --font-body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-hand: "Segoe Print", "Bradley Hand", "Comic Neue", cursive;
+  --font-type: "Courier New", Courier, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-ink);
+}
+
+body {
+  min-height: 100dvh;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, #24304d55, transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, #6b243033, transparent 60%),
+    var(--color-ink);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+html[data-text="large"] {
+  font-size: 112.5%;
+}
+
+html[data-contrast="high"] {
+  --color-muted: #d9d0bf;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brass-2);
+  outline-offset: 2px;
+}
+
+/* ---------- Surfaces ---------- */
+.panel {
+  background: linear-gradient(180deg, #1d2333ee, #161a27f2);
+  border: 1px solid #c9a25a33;
+  box-shadow: 0 10px 30px #00000066, inset 0 1px 0 #ffffff0d;
+}
+
+.paper {
+  background:
+    radial-gradient(circle at 20% 10%, #fff8e6 0, transparent 40%),
+    linear-gradient(180deg, #f2e7cd, #e2d2ad);
+  color: #2a2018;
+  box-shadow: 0 12px 30px #00000088, inset 0 0 40px #b8986033;
+}
+
+.paper-typed {
+  font-family: var(--font-type);
+}
+
+.paper-hand {
+  font-family: var(--font-hand);
+  color: #1f2a48;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.55rem 1rem;
+  font-weight: 600;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s, color 0.15s;
+  user-select: none;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: linear-gradient(180deg, #d6b06a, #a9843f);
+  color: #1a140c;
+  border: 1px solid #f1d993aa;
+  box-shadow: 0 4px 14px #c9a25a33;
+}
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #e3c07c, #b8924a);
+}
+.btn-ghost {
+  background: #ffffff08;
+  border: 1px solid #c9a25a40;
+  color: var(--color-cream);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: #ffffff14;
+  border-color: #c9a25a88;
+}
+.btn-danger {
+  background: #6b2430;
+  border: 1px solid #d0645a66;
+  color: #fbe9e4;
+}
+.btn-danger:hover:not(:disabled) {
+  background: #8e2f3f;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.75rem;
+  border: 1px solid #c9a25a44;
+  background: #ffffff0a;
+}
+
+/* ---------- Scene ---------- */
+.scene-svg {
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.obj-found-ring {
+  animation: found-ring 0.9s ease-out forwards;
+}
+@keyframes found-ring {
+  from {
+    opacity: 0.95;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+.hint-pulse {
+  animation: hint-pulse 1.4s ease-in-out infinite;
+}
+@keyframes hint-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+.miss-ripple {
+  animation: miss 0.5s ease-out forwards;
+}
+@keyframes miss {
+  from {
+    opacity: 0.6;
+    r: 4;
+  }
+  to {
+    opacity: 0;
+    r: 22;
+  }
+}
+
+.weather-anim .weather-rain {
+  animation: rain-fall 0.7s linear infinite;
+}
+@keyframes rain-fall {
+  from {
+    transform: translate(0, -26px);
+  }
+  to {
+    transform: translate(-8px, 0);
+  }
+}
+.weather-anim .weather-snow {
+  animation: snow-fall 6s linear infinite;
+}
+@keyframes snow-fall {
+  from {
+    transform: translate(0, -20px);
+  }
+  to {
+    transform: translate(12px, 20px);
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.35s ease-out both;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.toast-in {
+  animation: toast-in 0.25s ease-out both;
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.shake {
+  animation: shake 0.35s ease-in-out;
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.selected-glow {
+  box-shadow: 0 0 0 2px var(--color-brass-2), 0 0 18px #e0c27a88;
+}
+
+/* Reduced motion: honour both the OS setting and the in-game override. */
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="off"]) *,
+  html:not([data-motion="off"]) *::before,
+  html:not([data-motion="off"]) *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+html[data-motion="on"] *,
+html[data-motion="on"] *::before,
+html[data-motion="on"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #c9a25a55 transparent;
+}
+
