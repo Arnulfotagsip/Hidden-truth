@@ -29,8 +29,8 @@ export interface Placed extends Rect {
 }
 
 /** Rect resting on a furniture surface. `fx` is the horizontal centre (0–1). */
-export function on(p: Placed, surface: number, fx: number, w: number, h: number): Rect {
-  const surfaces = getSprite(p.art).surfaces ?? [0];
+export function on(p: Rect & { art?: string }, surface: number, fx: number, w: number, h: number): Rect {
+  const surfaces = (p.art ? getSprite(p.art).surfaces : undefined) ?? [0];
   const s = surfaces[Math.min(surface, surfaces.length - 1)];
   return { x: Math.round(p.x + fx * p.w - w / 2), y: Math.round(p.y + s * p.h - h), w, h };
 }
